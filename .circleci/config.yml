@@ -6,8 +6,8 @@ do_steps: &do_steps
  steps:
   - restore_cache:
       key: code-tree-shallow
-  - restore_cache:
-      key: bake-tree-cache
+#  - restore_cache:
+#      key: bake-tree-cache
   - run:
       name: checkout build tree
       command: |
@@ -26,6 +26,8 @@ do_steps: &do_steps
   - run:
       name: download bake and codes
       environment:
+        BAKE_BRANCH: "dce-3.10-test"
+        BAKE_MOD_VERSION: "1.10"
       command: |
         if [ -z "${BAKE_BRANCH}" ] ; then export BAKE_BRANCH="master" ; fi
         if [ -z "${BAKE_MOD_VERSION}" ] ; then export BAKE_MOD_VERSION="dev" ; fi
